@@ -3,6 +3,34 @@
 <head>
     <title>Electronic Nose Project | Bio-Inspired Olfactory System</title>
     <link rel="stylesheet" href="css/style.css">
+    <style>
+        /* Basic styling for equations - you can move this to your CSS file */
+        .equation {
+            font-family: 'Courier New', Courier, monospace;
+            background-color: #f0f0f0;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            text-align: center;
+        }
+        /* Style for section headings */
+        h2 {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #eee;
+            padding-bottom: 5px;
+        }
+        /* Keeping h3 for sub-sections as in original structure */
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 10px;
+        }
+        /* Basic list styling for readability */
+        ul ul {
+            margin-left: 20px;
+            list-style-type: circle;
+        }
+    </style>
 </head>
 <body>
     <div class="project-showcase">
@@ -24,8 +52,15 @@
             </div>
         </div>
 
-        <h3>Technical Overview</h3>
-        <p>Developed a bio-inspired electronic nose system using an array of gas sensors combined with advanced machine learning for real-time odor detection and classification.</p>
+        <h2>Abstract</h2>
+        <p>This project details the development and evaluation of a bio-inspired electronic nose (e-nose) system for real-time chemical detection and classification. The system integrates an array of eight Metal Oxide Semiconductor (MOS) gas sensors with a sophisticated signal processing pipeline and advanced machine learning algorithms, including custom neural network architectures, Principal Component Analysis (PCA), and Support Vector Machines (SVMs). Key design features include active sampling, environmental control, and robust algorithms for baseline correction, drift compensation, and feature extraction. The e-nose demonstrates high performance, achieving 97.3% classification accuracy across 12 distinct odor classes, a response time of less than 3 seconds, and a minimum detection limit of 5 parts per billion (ppb). This work presents the system architecture, methodology, performance metrics, and discusses potential applications in areas requiring rapid and reliable olfactory sensing.</p>
+
+        <h2>1. Introduction and Motivation</h2>
+        <p>The development of artificial olfactory systems, or electronic noses (e-noses), capable of mimicking the complex biological sense of smell, presents significant opportunities across various scientific and industrial domains. The ability to rapidly detect and accurately classify a wide range of volatile organic compounds (VOCs) and gases can address critical needs in environmental monitoring, quality control in food and beverage industries, industrial process monitoring, and safety applications.</p>
+        <p>This project was motivated by the demand for a robust, high-performance e-nose system that combines sensitivity, selectivity, and real-time analysis capabilities. The primary objective was to design and implement a complete system, from sensor array configuration and data acquisition to advanced signal processing and pattern recognition, capable of reliably differentiating multiple odor classes with high accuracy and low detection limits.</p>
+
+        <h2>2. System Design and Methodology</h2>
+        <p>The electronic nose system was developed based on established principles of olfactory biosensing, integrating hardware for gas capture and sensing with software for data processing and classification.</p>
 
         <div class="tech-stack">
             <span class="tech-tag">MOS Sensors</span>
@@ -35,43 +70,83 @@
             <span class="tech-tag">Data Fusion</span>
             <span class="tech-tag">Real-time Analysis</span>
         </div>
-
-        <h3>System Components</h3>
+        
+        <h3>System Components</h3> 
         <ul>
-            <li><strong>Sensor Array:</strong> 
+            <li><strong>Sensor Array & Data Acquisition:</strong>
+                <p>The core sensing element is an array comprising <strong>eight distinct Metal Oxide Semiconductor (MOS) gas sensors</strong>. This multi-sensor approach allows for the generation of unique response patterns ("smellprints") for different analytes, enhancing the system's discriminatory power. To ensure data quality and consistency:</p>
                 <ul>
-                    <li>8 MOS (Metal Oxide Semiconductor) sensors</li>
-                    <li>Temperature and humidity compensation</li>
-                    <li>Active sampling system</li>
-                    <li>Environmental control chamber</li>
+                    <li>An <strong>active sampling system</strong> was implemented to deliver a controlled flow of analyte to the sensor surfaces.</li>
+                    <li>The sensor array is housed within an <strong>environmental control chamber</strong> to mitigate the influence of ambient temperature and humidity fluctuations, further supported by <strong>temperature and humidity compensation</strong> mechanisms.</li>
+                    <li>Data from the sensor array is acquired and digitized for subsequent processing by a dedicated microcontroller/processing unit.</li>
                 </ul>
             </li>
-            <li><strong>Signal Processing:</strong>
+            <li><strong>Signal Processing Pipeline:</strong>
+                <p>Raw sensor signals from MOS sensors are susceptible to baseline drift and noise, requiring a robust signal processing pipeline to extract meaningful features:</p>
                 <ul>
-                    <li>Baseline correction algorithms</li>
-                    <li>Drift compensation</li>
-                    <li>Feature extraction pipeline</li>
-                    <li>Real-time data normalization</li>
+                    <li><strong>Baseline Correction:</strong> Algorithms are applied to establish and subtract the sensor baseline response in clean air, ensuring that measurements reflect the response to target analytes. For a sensor response $R(t)$, and a determined baseline $R_0(t)$, a common corrected feature is $\Delta R/R_0 = (R(t) - R_0(t))/R_0(t)$.
+                        <div class="equation">Conceptual Baseline Correction: &Delta;R/R&#8320; = (R(t) - R&#8320;(t)) / R&#8320;(t)</div>
+                    </li>
+                    <li><strong>Drift Compensation:</strong> Techniques are employed to counteract long-term drift in sensor responses, improving the stability and reliability of the system over extended operational periods.</li>
+                    <li><strong>Data Normalization:</strong> To ensure that each sensor contributes appropriately to the pattern recognition phase, regardless of its absolute response magnitude, <strong>real-time data normalization</strong> is performed. A common method is Min-Max normalization:
+                        <div class="equation">Min-Max Normalization: X_norm = (X - X_min) / (X_max - X_min)</div>
+                        (where X is the feature value, and X_min and X_max are the minimum and maximum values for that feature.)
+                    </li>
+                    <li><strong>Feature Extraction:</strong> A comprehensive <strong>feature extraction pipeline</strong> is utilized to derive a set of descriptive parameters from the dynamic sensor responses. This may include steady-state values, maximum response, response and recovery times, or parameters derived from the shape of the sensor response curve (dynamic response analysis).</li>
                 </ul>
             </li>
-            <li><strong>Pattern Recognition:</strong>
+            <li><strong>Pattern Recognition and Classification:</strong>
+                <p>The extracted feature vectors serve as input to the pattern recognition engine, which employs machine learning models to classify odors:</p>
                 <ul>
-                    <li>Custom neural network architecture</li>
-                    <li>Principal Component Analysis</li>
-                    <li>Support Vector Machines</li>
-                    <li>Dynamic response analysis</li>
+                    <li>A <strong>custom neural network architecture</strong> was developed and trained to learn complex, non-linear mappings between the sensor array features and specific odor classes.</li>
+                    <li><strong>Principal Component Analysis (PCA)</strong> is utilized for dimensionality reduction and data visualization, helping to identify dominant patterns and reduce redundancy in the feature set.
+                        (Conceptually, PCA transforms the original feature space into a new set of orthogonal principal components $PC_k$ by finding the eigenvectors of the covariance matrix of the data.)
+                    </li>
+                    <li><strong>Support Vector Machines (SVMs)</strong> are also employed for their strong generalization capabilities and effectiveness in high-dimensional spaces, providing robust classification boundaries.</li>
+                    <li>The system is trained on a labeled dataset of known odors to learn these classifications, enabling <strong>dynamic response analysis</strong> for robust identification.</li>
                 </ul>
             </li>
         </ul>
 
+        <body>
+    <div class="project-showcase">
+        <h1>🌟 Electronic Nose: Bio-Inspired Olfactory System</h1>
+        <p class="project-subtitle">Artificial olfactory system for chemical detection and analysis</p>
+
+        <p style="text-align: center; margin-bottom: 20px;">
+            The following diagrams offer a high-level visual insight into our Electronic Nose system, highlighting its core architecture, processing pipeline, and application potential.
+        </p>
+
+        <div class="project-grid">
+            <div>
+                <img src="./images/enose-architecture.png" alt="E-Nose Architecture" class="project-image">
+                <p>System Architecture & Sensor Array</p>
+            </div>
+            <div>
+                <img src="images/enose-processing.png" alt="Signal Processing Pipeline" class="project-image">
+                <p>Signal Processing & Pattern Recognition</p>
+            </div>
+            <div>
+                <img src="images/enose-applications.png" alt="Applications" class="project-image">
+                <p>Application Domains & Results</p>
+            </div>
+        </div>
+
+        <h2>Abstract</h2>
+        <p>This project details the development and evaluation of a bio-inspired electronic nose (e-nose) system...</p>
+        </div>
+</body>
+
+        <h2>3. Experimental Validation and Performance Evaluation</h2>
+        <p>The performance of the electronic nose was rigorously evaluated based on its ability to detect and classify a predefined set of <strong>12 distinct odor classes</strong>. The key performance indicators are summarized below:</p>
+        
         <h3>Performance Metrics</h3>
         <div class="metrics-grid">
             <div class="metric-card">
-                <div class="metric-number">97%</div>
-                <div>Classification Accuracy</div>
-            </div>
+                <div class="metric-number">97%</div> 
+                <div>Classification Accuracy</div> </div>
             <div class="metric-card">
-                <div class="metric-number">< 3s</div>
+                <div class="metric-number">&lt; 3s</div>
                 <div>Response Time</div>
             </div>
             <div class="metric-card">
@@ -90,8 +165,8 @@
                 <ul>
                     <li>Minimum detection: 5 ppb</li>
                     <li>Dynamic range: 5 ppb - 100 ppm</li>
-                    <li>Cross-sensitivity: < 2%</li>
-                    <li>Response time: < 3 seconds</li>
+                    <li>Cross-sensitivity: &lt; 2% (for tested analytes)</li>
+                    <li>Response time: &lt; 3 seconds (to reach e.g., 90% of steady-state response)</li>
                 </ul>
             </li>
             <li><strong>Classification Metrics:</strong>
@@ -101,8 +176,36 @@
                     <li>Recall: 95.9%</li>
                     <li>F1-Score: 96.3%</li>
                 </ul>
+                <p>The F1-Score, a measure of a test's accuracy, is calculated as the harmonic mean of precision and recall:</p>
+                <div class="equation">F1 = 2 * (Precision * Recall) / (Precision + Recall)</div>
             </li>
         </ul>
+        <p>These metrics demonstrate the system's high efficacy in correctly identifying and differentiating between the target odor classes. The combination of the optimized sensor array, robust signal processing, and advanced pattern recognition techniques contributes to this high level of performance.</p>
+
+        <h2>4. Applications and Future Directions</h2>
+        <p>The developed electronic nose system, with its demonstrated high sensitivity and classification accuracy, has significant potential across numerous fields:</p>
+        <ul>
+            <li><strong>Environmental Monitoring:</strong> Real-time detection of pollutants, VOCs, and hazardous gases.</li>
+            <li><strong>Food Quality Control:</strong> Assessment of freshness, ripeness, or detection of spoilage and contaminants.</li>
+            <li><strong>Industrial Process Control:</strong> Monitoring chemical processes and detecting anomalies or leaks.</li>
+            <li><strong>Safety and Security:</strong> Identification of hazardous materials or air quality threats.</li>
+            <li><strong>Biomedical Applications:</strong> Research into non-invasive disease diagnosis through breath analysis.</li>
+        </ul>
+        <p>Future work will focus on:</p>
+        <ul>
+            <li>Expanding the library of detectable analytes and odor classes.</li>
+            <li>Further optimization of the neural network architecture and training protocols.</li>
+            <li>Miniaturization of the hardware components for enhanced portability.</li>
+            <li>Investigation of long-term stability and strategies for continuous recalibration and drift compensation under varying environmental conditions.</li>
+            <li>Development of application-specific interfaces and integration with IoT platforms for remote data access and alerting.</li>
+        </ul>
+
+        <h2>5. Conclusion</h2>
+        <p>This project successfully demonstrates the design, implementation, and validation of a high-performance electronic nose system. By integrating a carefully selected MOS sensor array with advanced signal processing and machine learning techniques, the system achieves excellent sensitivity, rapid response, and high classification accuracy for multiple odor classes. The results underscore the viability of this approach for various real-world applications requiring precise and reliable artificial olfaction.</p>
+        
+        <hr>
+        <p style="text-align:center;"><em>To learn more or contribute, visit the <a href="[YOUR_GITHUB_REPO_LINK_HERE]">GitHub Repository</a>.</em></p>
+
     </div>
 </body>
 </html>
