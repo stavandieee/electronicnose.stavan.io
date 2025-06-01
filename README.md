@@ -27,7 +27,7 @@ The full IEEE-formatted research paper is available in [`docs/ieee-paper.md`](do
 ```bibtex
 @article{enose2025,
   title={Cost-Effective AI-Enhanced Electronic Nose Systems: A Comprehensive Approach Using Edge Computing and Transfer Learning},
-  author={Your Name},
+  author= Stavan D,
   journal={IEEE Sensors Journal},
   year={2025},
   note={Preprint}
@@ -215,9 +215,6 @@ enose.collect_samples(
   <img src="docs/images/confusion_matrix.png" width="45%" />
 </div>
 
-## 🤝 Contributing
-
-We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.md) for details.
 
 ### Areas for Contribution
 - 🔧 Hardware optimizations
@@ -230,7 +227,7 @@ We welcome contributions! Please see our [Contributing Guidelines](CONTRIBUTING.
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-## 🙏 Acknowledgments
+## Acknowledgments
 
 - TensorFlow team for TensorFlow Lite
 - Espressif for ESP32 platform
@@ -238,14 +235,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 📞 Contact
 
-- **Email**: your.email@example.com
-- **Issues**: [GitHub Issues](https://github.com/YOUR_USERNAME/ai-electronic-nose/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/YOUR_USERNAME/ai-electronic-nose/discussions)
+- **Email**: stavand@ieee.org
 
 ---
 
 <div align="center">
-  Made with ❤️ for accessible AI sensing
-  
   ⭐ Star this repo if you find it helpful!
 </div>
