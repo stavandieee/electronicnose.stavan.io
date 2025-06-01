@@ -1,0 +1,15 @@
+# Bill of Materials (BOM)
+
+The file `BOM.csv` in this folder lists all components needed for the AI-powered electronic nose. Each row contains:
+
+- **Reference**: The reference designator on the PCB (e.g., R1, C3, U2).
+- **Component**: A short description (e.g., “STM32F103C8T6”, “MQ-2 sensor”, “IRLZ44N MOSFET”).
+- **Quantity**: How many of that component the board requires.
+- **Value/Model**: Exact part number or value (e.g., “STM32F103C8T6”, “MQ-2 breakout”).
+- **Footprint**: SMD/through-hole footprint name (e.g., “SOIC-20”, “TO-92”).
+- **Supplier Link**: URL or distributor part number (optional).
+- **Unit Cost (USD)**: Approximate unit price.
+- **Total Cost (USD)**: Quantity × Unit Cost.
+- **Notes**: Any special notes (e.g., “Buy from Mouser”, “Tolerances: 1%”).
+
+When ordering, double-check the footprint, package, and any matching requirements.
