@@ -23,4 +23,4 @@ The electronic nose hardware consists of:
 | PCB | 1 | $5 | $5 |
 | Resistors/Caps | Various | $7 | $7 |
 | Enclosure | 1 | $10 | $10 |
-| **Total** | | | **$65** |# Hardware Designs
+| **Total** | | | **$65** |
