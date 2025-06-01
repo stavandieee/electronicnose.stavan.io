@@ -5,7 +5,9 @@
 [![TensorFlow](https://img.shields.io/badge/TensorFlow-2.10+-orange.svg)](https://www.tensorflow.org/)
 [![Platform](https://img.shields.io/badge/platform-ESP32-green.svg)](https://www.espressif.com/en/products/socs/esp32)
 
-A cost-effective AI-powered electronic nose system using edge computing and transfer learning for real-time odor classification.
+I have attempted to create a cost-effective AI-powered electronic nose system using edge computing and transfer learning for real-time odor classification.
+
+disclaimer: I have relied on Claude AI for my scripting and coding refinements. Hardware design is organic. 
 
 ## 📋 Overview
 
@@ -216,16 +218,9 @@ enose.collect_samples(
 </div>
 
 
-### Areas for Contribution
-- 🔧 Hardware optimizations
-- 🧠 Model improvements
-- 📱 Mobile app development
-- 📊 New datasets
-- 🌍 Real-world deployments
-
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE] file for details.
 
 ## Acknowledgments
 
